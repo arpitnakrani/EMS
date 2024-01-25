@@ -9,14 +9,14 @@ import { accordionData, selectbarData } from '../../../../constants/static-datas
 const DocumentSelection = () => {
     const [search, setSearch] = useState('')
     return (
-        <div>
+        <div className='bg-white border border-gray-300 p-4 rounded-lg'>
             <div>
                 <h2>Available Documents</h2>
                 <Search value={search} onSearch={setSearch} />
             </div>
             <div>
                 <h2>Filter by:</h2>
-                <div>
+                <div className='grid grid-rows-2 grid-flow-col gap-4'>
                     {
                         selectbarData.map((selectbar) => <SelectBar {...selectbar} key={selectbar.id} />)
                     }

@@ -1,4 +1,5 @@
 import DocumentSelection from "./components/document-selection"
+import DocumentDisplay from "./components/documnet-display"
 
 const Home = () => {
     return (
@@ -7,14 +8,13 @@ const Home = () => {
                 <h1>
                     Select the agreements, notices and documents you want Jason Smith to sign*
                 </h1>
-                <div className="flex justify-between">
-                    <div className="flex-1">
-                        <DocumentSelection />
+                <div className="grid grid-rows-2 grid-flow-col gap-4">
+                    <DocumentSelection />
+                    <div >
                     </div>
-                    <div className="flex-1">
-                        <DocumentSelection />
+                    <DocumentDisplay />
+                    <div >
                     </div>
-
                 </div>
             </div>
         </div>
