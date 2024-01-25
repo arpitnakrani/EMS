@@ -9,7 +9,7 @@ interface IBadge {
 
 const Badge = ({ lable, onRemove, color }: IBadge) => {
     return (
-        <div className={cn("flex px-2 py-1  items-center gap-4 rounded-md text-sm  justify-between", `bg-${color}-100 text-${color}-500`)}>
+        <div className={cn("flex px-2 py-1  items-center gap-4 rounded-md text-sm  justify-between", `bg-blue-100 bg-${color}-100 text-${color}-500`)}>
             <p>
                 {lable}
             </p>
