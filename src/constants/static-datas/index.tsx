@@ -1,13 +1,24 @@
-import { ISingleAccordion } from "../../components/accordion"
+import { IAccordion } from "../../components/accordion"
 import { ISelectBar } from "../../components/select-bar"
+interface ISelectBarWithoutOnChange extends Omit<ISelectBar, 'onChange'> { }
+interface IAccordionWithoutOnClick extends Omit<IAccordion, 'onClick'> { }
 
-export const selectbarData: ISelectBar[] = [
+export const selectbarData: ISelectBarWithoutOnChange[] = [
     {
         id: '1',
         options: [{
             label: 'Heavy Equipment Operator',
             value: 'Heavy Equipment Operator'
-        }],
+        },
+        {
+            label: 'Equipment Operator',
+            value: 'Equipment Operator'
+        },
+        {
+            label: 'Track Foreman',
+            value: 'Track Foreman'
+        },
+        ],
         placeholder: 'Job Templates'
     },
     {
@@ -36,7 +47,7 @@ export const selectbarData: ISelectBar[] = [
     },
 ]
 
-export const accordionData: ISingleAccordion[] = [
+export const accordionData: IAccordionWithoutOnClick[] = [
     {
         id: '1',
         list: [

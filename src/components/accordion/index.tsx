@@ -1,43 +1,46 @@
-export interface ISingleAccordion {
+import { useState } from "react";
+import { MdOutlineExpandMore } from "react-icons/md";
+import { FaArrowRight } from "react-icons/fa";
+
+export interface IAccordion {
     id: string;
     title: string;
-    list: string[]
+    list: string[];
+    onClick: (selectedDocValue: string) => void
 }
 
-interface IAccordion {
-    accordionData: ISingleAccordion[]
-}
-const Accordion = ({ accordionData }: IAccordion) => {
+function Accordion({ id, list, title, onClick }: IAccordion) {
+    const [open, setOpen] = useState(false);
+    //toggle accordion function
+    let toggleHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        //switch state
+        setOpen(!open);
+    };
     return (
-        <>
-            <div id="accordion-collapse" data-accordion="collapse">
-                {
-                    accordionData.map((accordion, index) => <div key={accordion.id}>
-                        <h2 id={`accordion-collapse-heading-${accordion.id}`}>
-                            <button type="button" className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target={`#accordion-collapse-body-${accordion.id}`} aria-expanded="true" aria-controls={`accordion-collapse-body-${accordion.id}`}>
-                                <span>{accordion.title}</span>
-                                <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                                </svg>
-                            </button>
-                        </h2>
-                        <div id={`accordion-collapse-body-${accordion.id}`} className="hidden" aria-labelledby={`accordion-collapse-heading-${accordion.id}`}>
-                            <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                                <ul>
-                                    {
-                                        accordion.list.map((accordionListItem) => <li>
-                                            {accordionListItem}
-                                        </li>)
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    )
-                }
+        <div className="w-full  overflow-hidden cursor-pointer border-b border-gray-300">
+            <div className="flex items-center justify-between  p-4 bg-gray-100" onClick={toggleHandler}>
+                <h4 className="transition-all duration-200 ease-in-out text-base font-normal">{title}</h4>
+                <i className="transition-all duration-200 ease-in-out transform-origin-center">
+                    <MdOutlineExpandMore />
+                </i>
             </div>
-        </>
-    )
+            {open && <div>
+                <ul className="flex p-2 flex-col items-start gap-3 self-stretch text-sm">
+                    {
+                        list.map((listItem, index) => <li key={index} className="flex justify-between w-full" onClick={() => onClick(listItem)}>
+                            <div>
+                                {listItem}
+                            </div>
+                            <div className="flex p-1 justify-center items-center border border-gray-200 bg-white rounded-md">
+                                <FaArrowRight />
+                            </div>
+                        </li>)
+                    }
+                </ul>
+            </div>}
+        </div>
+    );
 }
+
 
 export default Accordion

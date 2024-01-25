@@ -1,8 +1,14 @@
+import { DocumentContextProvider } from "./context/document";
 import Home from "./pages/home";
 
 function App() {
+
   return (
-    <Home />
+    <div className="h-screen w-full bg-gray-50">
+      <DocumentContextProvider>
+        <Home />
+      </DocumentContextProvider>
+    </div>
   );
 }
 
